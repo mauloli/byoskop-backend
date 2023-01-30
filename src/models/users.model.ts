@@ -7,18 +7,30 @@ import { HookReturn } from 'sequelize/types/hooks';
 export default function (app: Application): typeof Model {
   const sequelizeClient: Sequelize = app.get('sequelizeClient');
   const users = sequelizeClient.define('users', {
-  
     email: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true
+      unique: {
+        name: 'email_unique',
+        msg: 'email telah terdaftar!',
+      },
     },
     password: {
       type: DataTypes.STRING,
       allowNull: false
     },
-  
-  
+    status: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0
+    },
+    is_admin: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0
+    },
+    otp: {
+      type: DataTypes.STRING,
+      defaultValue: 0
+    },
   }, {
     hooks: {
       beforeCount(options: any): HookReturn {

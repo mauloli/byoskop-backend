@@ -6,10 +6,6 @@ import nodemailer from 'nodemailer';
 import crypto from 'crypto';
 import { HookContext } from '@feathersjs/feathers';
 
-
-
-// Don't remove this comment. It's needed to format import lines nicely.
-
 const { authenticate } = feathersAuthentication.hooks;
 const { hashPassword, protect } = local.hooks;
 const { isEmail, isLength, matches } = validator;

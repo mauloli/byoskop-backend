@@ -12,9 +12,10 @@
     "secret": "JWTSECRET",
     "authStrategies": [
       "jwt",
-      "local"
+      "local",
+      "refreshToken"
     ],
-    "jwtOptions": { 
+    "jwtOptions": {
       "header": {
         "typ": "access"
       },
@@ -27,6 +28,10 @@
       "usernameField": "email",
       "passwordField": "password"
     }
+  },
+  "refreshToken": {
+    "secret": "JWTSECRET",
+    "expiresIn": "7d"
   },
   "mysql": "mysql://root:@localhost:3306/byoskop"
 }

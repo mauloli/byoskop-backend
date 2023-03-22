@@ -39,7 +39,29 @@ app.use(favicon(path.join(app.get('public'), 'favicon.ico')));
 app.use('/', express.static(app.get('public')));
 
 // Set up Plugins and providers
-app.configure(express.rest());
+
+function formatter(req: any, res: any, next: any): void {
+  const { newAccessToken, newRefreshToken } = res.hook || {};
+  if (!(newAccessToken && newRefreshToken) && !res.data) {
+    return next();
+  }
+
+  if (newAccessToken && newRefreshToken) {
+    res.setHeader('Authorization', newAccessToken);
+    res.setHeader('X-Refresh-Token', newRefreshToken);
+    res.status(401).send(res.hook?.error);
+    return next();
+  }
+
+  res.format({
+    'application/json': function () {
+      res.json(res.data);
+
+    },
+  });
+}
+
+app.configure(express.rest(formatter));
 app.configure(socketio());
 
 app.configure(sequelize);

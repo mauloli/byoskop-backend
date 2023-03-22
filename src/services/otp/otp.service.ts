@@ -4,7 +4,7 @@ import { Application } from '../../declarations';
 import { Otp } from './otp.class';
 import { OtpVerifyer } from './otpVerifyer.class';
 import hooks from './otp.hooks';
-import createModel from '../../models/users.model'
+import createModel from '../../models/users.model';
 
 // Add this service to the service type index
 declare module '../../declarations' {

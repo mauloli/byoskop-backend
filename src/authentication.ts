@@ -4,9 +4,6 @@ import { LocalStrategy } from '@feathersjs/authentication-local';
 import { expressOauth } from '@feathersjs/authentication-oauth';
 import { compare } from 'bcrypt';
 import { Application } from './declarations';
-import jwt from 'jsonwebtoken';
-import { mergeAll } from 'ramda'
-
 
 declare module './declarations' {
   interface ServiceTypes {

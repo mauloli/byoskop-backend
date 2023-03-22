@@ -73,7 +73,7 @@ const sendMail = () => {
     });
 
     const info = await transporter.sendMail({
-      from: '"Fred Foo 👻" <mauloli@zohomail.com>', // sender address
+      from: '"Byoskop 👻" <mauloli@zohomail.com>', // sender address
       to: data.email, // list of receivers
       subject: 'test', // Subject line
       text: `otp ${otp}` // html body
@@ -87,7 +87,9 @@ const sendMail = () => {
 export default {
   before: {
     all: [],
-    find: [authenticate('jwt')],
+    find: [
+      authenticate('jwt'),
+    ],
     get: [authenticate('jwt')],
     create: [
       checkEmailAndPassword(),
